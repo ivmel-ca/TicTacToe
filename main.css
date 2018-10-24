@@ -89,17 +89,16 @@
         align-items: center;
         font-size: 5em; }
       * body main .player1 {
-        margin-right: 200px; }
+        margin-right: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
       * body main .player2 {
-        margin-left: 200px; }
+        margin-left: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
       * body main span {
-        font-size: 3em;
-        position: absolute; }
-      * body main .p1 {
-        left: 100px;
-        top: 180px; }
-      * body main .p2 {
-        right: 80px;
-        top: 180px; }
+        font-size: 3em; }
 
 /*# sourceMappingURL=main.css.map */

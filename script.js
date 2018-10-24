@@ -4,10 +4,7 @@ var fieldsquareList = document.querySelectorAll('.fieldsquare');
 var horizontal = document.querySelector('.horizontal');
 var vertical = document.querySelector('.vertical');
 var diagonal = document.querySelector('.diagonal');
-var reset ;
-
-var player1 = document.querySelector('.player1');
-var player2 = document.querySelector('.player2');
+var reset;
 var dataArray = [
     [0, 0, 0],
     [0, 0, 0],
@@ -29,9 +26,17 @@ function clearTable() {
 
     diagonal.classList.remove('left');
     diagonal.classList.remove('right');
-}
-function getWinner(winningCombination) {
 
+    reset = false;
+    dataArray = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ];
+    step = 0;
+}
+
+function getWinner(winningCombination) {
     if (winningCombination === 3) {
         var winner = document.querySelector('.winner');
         winner.innerText = +winner.innerText + 1;
@@ -39,18 +44,17 @@ function getWinner(winningCombination) {
 
     if (winningCombination === 15) {
         var scoreList = document.querySelectorAll('.score');
+
         scoreList.forEach(function (item) {
             item.classList.toggle('winner');
         });
         var winner = document.querySelector('.winner');
         winner.innerText = +winner.innerText + 1;
-
     }
-
 }
-function finalResult() {
 
-    for(var i = 0; i < dataArray.length; i++) {
+function finalResult() {
+    for (var i = 0; i < dataArray.length; i++) {
         var currentArray = dataArray[i];
         var horizontalLine = 0;
 
@@ -81,11 +85,10 @@ function finalResult() {
         diagonalLine1 = diagonalLine1 + currentArray1[o];
     }
 
-    var Array1 = dataArray[0];
-    var Array2 = dataArray[1];
-    var Array3 = dataArray[2];
-    var diagonalLine2 = Array1[2] + Array2[1] + Array3[0];
-
+    var array1 = dataArray[0];
+    var array2 = dataArray[1];
+    var array3 = dataArray[2];
+    var diagonalLine2 = array1[2] + array2[1] + array3[0];
 
     if (verticalLine0 === 3 || verticalLine0 === 15) {
         var vLine0 = document.querySelector('.vertical');
@@ -109,6 +112,7 @@ function finalResult() {
         reset = true;
         return reset;
     }
+
     if (diagonalLine1 === 3 || diagonalLine1 === 15) {
         var dLine1 = document.querySelector('.diagonal');
         dLine1.classList.add('left');
@@ -116,6 +120,7 @@ function finalResult() {
         reset = true;
         return reset;
     }
+
     if (diagonalLine2 === 3 || diagonalLine2 === 15) {
         var dLine2 = document.querySelector('.diagonal');
         dLine2.classList.add('right');
@@ -124,40 +129,45 @@ function finalResult() {
         reset = true;
         return reset;
     }
+
+    var fieldsquareCount = 0;
+    console.log(fieldsquareCount);
+
+    fieldsquareList.forEach(function (item) {
+        if(item.innerText) {
+            fieldsquareCount += 1;
+            console.log(fieldsquareCount);
+        }
+    });
+
+    if(fieldsquareCount === 9) {
+        clearTable();
+    }
 }
 
 playarea.addEventListener('click', function (event) {
-
-    if ( reset ) {
+    if (reset) {
         clearTable();
-        reset = false;
-        dataArray = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-        ];
-        step = 0;
-
     } else {
-            if (!event.target.innerText) {
-                var position = event.target.getAttribute('id');
-                var outerArrayCoordinate = position.slice(0,1);// index in the first Array
-                var innerArrayCoordinate = position.slice(1,2);// index in the second Array
-                var innerArray = dataArray[outerArrayCoordinate];
 
-                if (step % 2 === 0) {
-                    event.target.innerText = "x";
-                    step++;
-                    innerArray[innerArrayCoordinate] = 1;
+        if (!event.target.innerText) {
+            var position = event.target.getAttribute('id');
+            var outerArrayCoordinate = position.slice(0, 1);// index in the first Array
+            var innerArrayCoordinate = position.slice(1, 2);// index in the second Array
+            var innerArray = dataArray[outerArrayCoordinate];
 
-                } else {
-                    event.target.innerText ='o';
-                    step++;
-                    innerArray[innerArrayCoordinate] = 5;
-                }
+            if (step % 2 === 0) {
+                event.target.innerText = "x";
+                step++;
+                innerArray[innerArrayCoordinate] = 1;
+            } else {
+                event.target.innerText = 'o';
+                step++;
+                innerArray[innerArrayCoordinate] = 5;
+            }
 
             finalResult();
-            }
+        }
     }
 });
 
