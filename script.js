@@ -171,5 +171,17 @@ playarea.addEventListener('click', function (event) {
     }
 });
 
+var button = document.querySelector('button');
 
+button.addEventListener('click', function () {
 
+    var scoreList = document.querySelectorAll('.score');
+    clearTable();
+    scoreList.forEach(function (item) {
+        item.innerText = 0;
+        item.classList.remove('winner');
+    });
+    var firstPlayer = scoreList[0];
+    firstPlayer.classList.add('winner');
+
+});
