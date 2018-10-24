@@ -178,13 +178,13 @@
       .player1 {
         position: absolute;
         top: 10px;
-        left: 10px;
+        left: 17px;
       }
 
       .player2 {
         position: absolute;
         top: 10px;
-        right: 10px;
+        right: 20px;
       }
     }
   }
@@ -192,8 +192,16 @@
   @media all and (max-width: 372px) {
    body{
     main {
+      height: 540px;
+
+      .playarea {
+      margin-top: 110px;
+      }
       span {
         font-size: 2.5em;
+      }
+      button{
+        top: 314px;
       }
     }
    }
