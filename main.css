@@ -100,5 +100,32 @@
         align-items: center; }
       * body main span {
         font-size: 3em; }
+      * body main .winner {
+        color: blue; }
+  @media all and (max-width: 1010px) {
+    * main {
+      min-width: 366px;
+      width: 100%;
+      height: 600px;
+      position: relative; }
+      * main .playarea {
+        width: 304px;
+        height: 304px;
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid grey;
+        position: relative;
+        margin-top: 100px; }
+      * main .player1 {
+        position: absolute;
+        top: 10px;
+        left: 10px; }
+      * main .player2 {
+        position: absolute;
+        top: 10px;
+        right: 10px; } }
+  @media all and (max-width: 372px) {
+    * body main span {
+      font-size: 2.5em; } }
 
 /*# sourceMappingURL=main.css.map */

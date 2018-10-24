@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
 
@@ -6,7 +6,7 @@
     background-color: wheat;
 
     main {
-      width:100%;
+      width: 100%;
       height: 600px;
       display: flex;
       position: relative;
@@ -20,7 +20,6 @@
         flex-wrap: wrap;
         border: 2px solid grey;
         position: relative;
-
 
         .fieldsquare {
           width: 100px;
@@ -45,7 +44,6 @@
           position: absolute;
           display: none;
         }
-
 
         .line0 {
           display: block;
@@ -83,7 +81,7 @@
           display: block;
           top: 10px;
           left: 148px;
-          
+
         }
 
         .vline2 {
@@ -101,14 +99,14 @@
 
         }
 
-        .left{
+        .left {
           transform: rotate(-45deg);
           left: 150px;
           top: -25px;
           display: block;
         }
 
-        .right{
+        .right {
           transform: rotate(45deg);
           left: 150px;
           top: -25px;
@@ -143,6 +141,50 @@
       span {
         font-size: 3em;
       }
+      .winner{
+        color: blue;
+      }
+      
     }
+  }
+  @media all and (max-width: 1010px) {
+    main {
+      min-width: 366px;
+      width: 100%;
+      height: 600px;
+      position: relative;
+
+      .playarea {
+        width: 304px;
+        height: 304px;
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid grey;
+        position: relative;
+        margin-top: 100px;
+      }
+
+      .player1 {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      .player2 {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+
+  @media all and (max-width: 372px) {
+   body{
+    main {
+      span {
+        font-size: 2.5em;
+      }
+    }
+   }
   }
 }
