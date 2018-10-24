@@ -101,7 +101,7 @@
       * body main span {
         font-size: 3em; }
       * body main .winner {
-        color: blue; }
+        border: 2px solid darkblue; }
   @media all and (max-width: 1010px) {
     * main {
       min-width: 366px;
