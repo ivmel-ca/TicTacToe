@@ -1,9 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Mali:700');
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
 * {
   margin: 0;
   box-sizing: border-box;
 
   body {
-    background-color: wheat;
+    background-color: #29ce9a;
+    position: relative;
+
+    h1 {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 3em;
+      font-family:'Acme', cursive;
+
+      b {
+        color: white;
+      }
+    }
 
     main {
       width: 100%;
@@ -18,24 +35,46 @@
         height: 304px;
         display: flex;
         flex-wrap: wrap;
-        border: 2px solid grey;
         position: relative;
+        border: 2px solid #29ce9a;
+
 
         .fieldsquare {
           width: 100px;
           height: 100px;
-          border: 2px solid grey;
+          border: 2px solid #3d1811;
           font-size: 5em;
           padding-bottom: 18px;
           display: flex;
           justify-content: center;
           align-items: center;
+          font-family: 'Mali', cursive;
+          color: #ffffff;
+          &:nth-child(n + 2) {
+            border-left: #29ce9a;
+          }
+          &:nth-child(n + 1) {
+            border-top: #29ce9a;
+          }
+          &:nth-child(3n) {
+            border-right: #29ce9a;
+          }
+          &:nth-child(10) {
+             border-bottom: #29ce9a;
+           }
+          &:nth-child(11) {
+            border-bottom: #29ce9a;
+          }
+          &:nth-child(12) {
+             border-bottom: #29ce9a;
+           }
 
           &:active {
             border: 4px solid black;
 
           }
         }
+
 
         .horizontal {
           width: 280px;
@@ -117,11 +156,12 @@
       .score {
         width: 100px;
         height: 100px;
-        border: 2px solid grey;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 5em;
+        font-family:'Indie Flower', cursive;
+
       }
 
       .player1 {
@@ -129,7 +169,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
       }
 
       .player2 {
@@ -138,11 +177,20 @@
         flex-direction: column;
         align-items: center;
       }
+
+
       span {
         font-size: 3em;
+        font-family: 'Acme', sans-serif;
+        border: 2px solid #29ce9a;
       }
+
+      .turn{
+        border-bottom: 2px solid #17369b;
+      }
+
       .winner{
-        border: 2px solid #007bff;
+        color: #ffffff;
       }
     }
     button {
@@ -150,15 +198,17 @@
       width: 200px;
       height: 50px;
       border-radius: 10px;
-      background-color: #007bff;
-      border-color: #007bff;
+      background-color: #15a578;
       color: #ffffff;
       font-size: 1.5em;
       top: 324px;
       left:50px;
+      font-family: 'Indie Flower', cursive;
+      border: 2px solid #054940;
     }
   }
   @media all and (max-width: 1010px) {
+
     main {
       min-width: 366px;
       width: 100%;
@@ -188,9 +238,19 @@
       }
     }
   }
+  @media all and (max-width: 650px) {
+    body{
+      h1 {
+        //display: none;
+        top: 325px;
+        opacity: 0.1;
+      }
+  }
 
   @media all and (max-width: 375px) {
-   body{
+
+
+
     main {
       height: 540px;
 

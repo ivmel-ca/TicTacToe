@@ -1,8 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Mali:700");
+@import url("https://fonts.googleapis.com/css?family=Acme");
 * {
   margin: 0;
   box-sizing: border-box; }
   * body {
-    background-color: wheat; }
+    background-color: #29ce9a;
+    position: relative; }
+    * body h1 {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 3em;
+      font-family: 'Acme', cursive; }
+      * body h1 b {
+        color: white; }
     * body main {
       width: 100%;
       height: 600px;
@@ -15,17 +27,31 @@
         height: 304px;
         display: flex;
         flex-wrap: wrap;
-        border: 2px solid grey;
-        position: relative; }
+        position: relative;
+        border: 2px solid #29ce9a; }
         * body main .playarea .fieldsquare {
           width: 100px;
           height: 100px;
-          border: 2px solid grey;
+          border: 2px solid #3d1811;
           font-size: 5em;
           padding-bottom: 18px;
           display: flex;
           justify-content: center;
-          align-items: center; }
+          align-items: center;
+          font-family: 'Mali', cursive;
+          color: #ffffff; }
+          * body main .playarea .fieldsquare:nth-child(n + 2) {
+            border-left: #29ce9a; }
+          * body main .playarea .fieldsquare:nth-child(n + 1) {
+            border-top: #29ce9a; }
+          * body main .playarea .fieldsquare:nth-child(3n) {
+            border-right: #29ce9a; }
+          * body main .playarea .fieldsquare:nth-child(10) {
+            border-bottom: #29ce9a; }
+          * body main .playarea .fieldsquare:nth-child(11) {
+            border-bottom: #29ce9a; }
+          * body main .playarea .fieldsquare:nth-child(12) {
+            border-bottom: #29ce9a; }
           * body main .playarea .fieldsquare:active {
             border: 4px solid black; }
         * body main .playarea .horizontal {
@@ -83,11 +109,11 @@
       * body main .score {
         width: 100px;
         height: 100px;
-        border: 2px solid grey;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 5em; }
+        font-size: 5em;
+        font-family: 'Indie Flower', cursive; }
       * body main .player1 {
         margin-right: 200px;
         display: flex;
@@ -99,20 +125,25 @@
         flex-direction: column;
         align-items: center; }
       * body main span {
-        font-size: 3em; }
+        font-size: 3em;
+        font-family: 'Acme', sans-serif;
+        border: 2px solid #29ce9a; }
+      * body main .turn {
+        border-bottom: 2px solid #17369b; }
       * body main .winner {
-        border: 2px solid #007bff; }
+        color: #ffffff; }
     * body button {
       position: absolute;
       width: 200px;
       height: 50px;
       border-radius: 10px;
-      background-color: #007bff;
-      border-color: #007bff;
+      background-color: #15a578;
       color: #ffffff;
       font-size: 1.5em;
       top: 324px;
-      left: 50px; }
+      left: 50px;
+      font-family: 'Indie Flower', cursive;
+      border: 2px solid #054940; }
   @media all and (max-width: 1010px) {
     * main {
       min-width: 366px;
@@ -135,14 +166,18 @@
         position: absolute;
         top: 10px;
         right: 10px; } }
-  @media all and (max-width: 375px) {
-    * body main {
-      height: 540px; }
-      * body main .playarea {
-        margin-top: 110px; }
-      * body main span {
-        font-size: 2.5em; }
-      * body main button {
-        top: 314px; } }
+  @media all and (max-width: 650px) {
+    * body h1 {
+      top: 325px;
+      opacity: 0.1; } }
+@media all and (max-width: 650px) and (max-width: 375px) {
+  * main {
+    height: 540px; }
+    * main .playarea {
+      margin-top: 110px; }
+    * main span {
+      font-size: 2.5em; }
+    * main button {
+      top: 314px; } }
 
 /*# sourceMappingURL=main.css.map */

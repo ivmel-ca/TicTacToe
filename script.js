@@ -148,6 +148,10 @@ function finalResult() {
 playarea.addEventListener('click', function (event) {
     if (reset) {
         clearTable();
+        var spanList =document.querySelectorAll('span');
+        spanList.forEach(function (item) {
+            item.classList.toggle('turn')
+        });
     } else {
 
         if (!event.target.innerText) {
@@ -155,15 +159,22 @@ playarea.addEventListener('click', function (event) {
             var outerArrayCoordinate = position.slice(0, 1);// index in the first Array
             var innerArrayCoordinate = position.slice(1, 2);// index in the second Array
             var innerArray = dataArray[outerArrayCoordinate];
+            var spanList =document.querySelectorAll('span');
 
             if (step % 2 === 0) {
                 event.target.innerText = "x";
                 step++;
                 innerArray[innerArrayCoordinate] = 1;
+                spanList.forEach(function (item) {
+                    item.classList.toggle('turn')
+                });
             } else {
                 event.target.innerText = 'o';
                 step++;
                 innerArray[innerArrayCoordinate] = 5;
+                spanList.forEach(function (item) {
+                    item.classList.toggle('turn')
+                });
             }
 
             finalResult();
