@@ -168,16 +168,18 @@
         right: 10px; } }
   @media all and (max-width: 650px) {
     * body h1 {
-      top: 325px;
+      top: 315px;
       opacity: 0.1; } }
 @media all and (max-width: 650px) and (max-width: 375px) {
+  * body {
+    overflow: hidden; }
   * main {
-    height: 540px; }
+    height: 530px; }
     * main .playarea {
-      margin-top: 110px; }
+      margin-top: 100px; }
     * main span {
-      font-size: 2.5em; }
+      font-size: 1em; }
     * main button {
-      top: 314px; } }
+      top: 312px; } }
 
 /*# sourceMappingURL=main.css.map */
