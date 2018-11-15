@@ -1,198 +1,181 @@
-var playarea = document.querySelector('.playarea');
+var playArea = document.querySelector('.playarea'); //  main play area
 var step = 0;// determines who is player
-var fieldsquareList = document.querySelectorAll('.fieldsquare');
-var horizontal = document.querySelector('.horizontal');
-var vertical = document.querySelector('.vertical');
-var diagonal = document.querySelector('.diagonal');
-var reset;
-var dataArray = [
+var fieldSquareList = document.querySelectorAll('.fieldsquare');// cells of main area
+var horizontal = document.querySelector('.horizontal');// winning line
+var vertical = document.querySelector('.vertical');// winning line
+var diagonal = document.querySelector('.diagonal');// winning line
+var reset; // triggers main play area purification
+const dataArray = [ // the main array to determine the winner
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
 ];
 
-function clearTable() {
-    fieldsquareList.forEach(function (item) {
+function clearTable() { // when reset true, cleans every cell of main play area
+    fieldSquareList.forEach(function (item) {
         item.innerText = '';
     });
+    for (let i = 0; i < 3; i++) {
+        horizontal.classList.remove('hline' + i);
+        vertical.classList.remove('vline' + i);
+        diagonal.classList.remove('dLine' + i);
 
-    horizontal.classList.remove('line0');
-    horizontal.classList.remove('line1');
-    horizontal.classList.remove('line2');
-
-    vertical.classList.remove('vline0');
-    vertical.classList.remove('vline1');
-    vertical.classList.remove('vline2');
-
-    diagonal.classList.remove('left');
-    diagonal.classList.remove('right');
+    }
 
     reset = false;
-    dataArray = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-    ];
+
+    dataArray.forEach(function (item) {
+        for (let i = 0; i < item.length; i++) {
+            item[i] = 0;
+        }
+    });
     step = 0;
 }
 
-function getWinner(winningCombination) {
-    if (winningCombination === 3) {
-        var winner = document.querySelector('.winner');
-        winner.innerText = +winner.innerText + 1;
-    }
+function getWinner(winningCombination) { // determines winner
 
-    if (winningCombination === 15) {
-        var scoreList = document.querySelectorAll('.score');
+    switch (winningCombination) {
+        case 3:
+            const winner = document.querySelector('.winner');
+            winner.innerText = +winner.innerText + 1;
+            break;
+        case 15:
+            const scoreList = document.querySelectorAll('.score');
 
-        scoreList.forEach(function (item) {
-            item.classList.toggle('winner');
-        });
-        var winner = document.querySelector('.winner');
-        winner.innerText = +winner.innerText + 1;
+            scoreList.forEach(function (item) {
+                item.classList.toggle('winner');
+            });
+            const newWinner = document.querySelector('.winner');
+            newWinner.innerText = +newWinner.innerText + 1;
+            break;
     }
 }
 
 function finalResult() {
-    for (var i = 0; i < dataArray.length; i++) {
-        var currentArray = dataArray[i];
-        var horizontalLine = 0;
+    const combinations = {// set of counts, that determines where a red 'cross out' line will appear
+        'verticalLine0': 0,
+        'verticalLine1': 0,
+        'verticalLine2': 0,
+        'diagonalLine0': 0,
+        'diagonalLine1': 0
+    };
+    for (let i = 0; i < dataArray.length; i++) { // counts from arrays winning number for each line
+        const currentArray = dataArray[i];
+        combinations.verticalLine0 += currentArray[0];
+        combinations.verticalLine1 += currentArray[1];
+        combinations.verticalLine2 += currentArray[2];
+        combinations.diagonalLine0 += currentArray[i];
+        combinations.diagonalLine1 += currentArray[-(i - 2)];
 
-        for (var j = 0; j < currentArray.length; j++) {
-            horizontalLine += currentArray[j];
+        let horizontalLine = 0;
+        
+        for (let i = 0; i < currentArray.length; i++) {
+            horizontalLine += currentArray[i];
         }
 
-        if (horizontalLine === 3 || horizontalLine === 15) {
-            var linePosition = 'line' + i;
-            var hLine = document.querySelector('.horizontal');
-            hLine.classList.add(linePosition);
+        if ( horizontalLine === 3 ||  horizontalLine === 15) { //set a red line in a certain horizontal position
+            const hLine = document.querySelector('.horizontal');
+            hLine.classList.add('hline' + i);
             getWinner(horizontalLine);
             reset = true;
             return reset;
         }
     }
+    for (let i = 0; i < dataArray.length; i++) {
+        const currentVerticalLine = 'verticalLine' + i;
 
-    var verticalLine0 = 0;
-    var verticalLine1 = 0;
-    var verticalLine2 = 0;
-    var diagonalLine1 = 0;
+        if (combinations[currentVerticalLine] === 3 || combinations[currentVerticalLine] === 15) {//set a red line
+                                                                                    // in a certain vertical position
+            const vLine = document.querySelector('.vertical');
+            vLine.classList.add('vline' + i);
+            getWinner(combinations[currentVerticalLine]);
+            reset = true;
+            return reset;
+        }
+    }
+    for (let i = 0; i < dataArray.length; i++) {
+        const currentDiagonalLine = 'diagonalLine' + i;
 
-    for (var o = 0; o < dataArray.length; o++) {
-        var currentArray1 = dataArray[o];
-        verticalLine0 += currentArray1[0];
-        verticalLine1 += currentArray1[1];
-        verticalLine2 += currentArray1[2];
-        diagonalLine1 = diagonalLine1 + currentArray1[o];
+        if (combinations[currentDiagonalLine] === 3 || combinations[currentDiagonalLine] === 15) {//set a red line
+                                                                                    // in a certain diagonal position
+            const dLine = document.querySelector('.diagonal');
+            dLine.classList.add('dLine' + i);
+            getWinner(combinations[currentDiagonalLine]);
+            reset = true;
+            return reset;
+        }
     }
 
-    var array1 = dataArray[0];
-    var array2 = dataArray[1];
-    var array3 = dataArray[2];
-    var diagonalLine2 = array1[2] + array2[1] + array3[0];
+    let fieldSquareCount = 0;
+    const standOffSituation = 9;
 
-    if (verticalLine0 === 3 || verticalLine0 === 15) {
-        var vLine0 = document.querySelector('.vertical');
-        vLine0.classList.add('vline0');
-        getWinner(verticalLine0);
-        reset = true;
-        return reset;
-    }
-    if (verticalLine1 === 3 || verticalLine1 === 15) {
-        var vLine1 = document.querySelector('.vertical');
-        vLine1.classList.add('vline1');
-        getWinner(verticalLine1);
-        reset = true;
-        return reset;
-
-    }
-    if (verticalLine2 === 3 || verticalLine2 === 15) {
-        var vLine2 = document.querySelector('.vertical');
-        vLine2.classList.add('vline2');
-        getWinner(verticalLine2);
-        reset = true;
-        return reset;
-    }
-
-    if (diagonalLine1 === 3 || diagonalLine1 === 15) {
-        var dLine1 = document.querySelector('.diagonal');
-        dLine1.classList.add('left');
-        getWinner(diagonalLine1);
-        reset = true;
-        return reset;
-    }
-
-    if (diagonalLine2 === 3 || diagonalLine2 === 15) {
-        var dLine2 = document.querySelector('.diagonal');
-        dLine2.classList.add('right');
-        getWinner(diagonalLine2);
-
-        reset = true;
-        return reset;
-    }
-
-    var fieldsquareCount = 0;
-    console.log(fieldsquareCount);
-
-    fieldsquareList.forEach(function (item) {
-        if(item.innerText) {
-            fieldsquareCount += 1;
-            console.log(fieldsquareCount);
+    fieldSquareList.forEach(function (item) {// counter to determine standoff situation
+        if (item.innerText) {
+            fieldSquareCount ++;
         }
     });
 
-    if(fieldsquareCount === 9) {
+    if (fieldSquareCount === standOffSituation) { // resolve standoff situation
         clearTable();
+        const spanList = document.querySelectorAll('span');
+        spanList.forEach(function (item) {//maintains the winner's turn in a standoff situation
+            item.classList.toggle('turn');
+        });
     }
 }
 
-playarea.addEventListener('click', function (event) {
-    if (reset) {
+playArea.addEventListener('click', function (event) {
+    let spanList = document.querySelectorAll('span');
+
+    if (reset) {// winning combination provokes game area cleaning and maintains a turn of a winner
         clearTable();
-        var spanList =document.querySelectorAll('span');
         spanList.forEach(function (item) {
-            item.classList.toggle('turn')
+            item.classList.toggle('turn');
         });
     } else {
 
         if (!event.target.innerText) {
-            var position = event.target.getAttribute('id');
-            var outerArrayCoordinate = position.slice(0, 1);// index in the first Array
-            var innerArrayCoordinate = position.slice(1, 2);// index in the second Array
-            var innerArray = dataArray[outerArrayCoordinate];
-            var spanList =document.querySelectorAll('span');
+            const position = event.target.getAttribute('id');
+            const outerArrayCoordinate = position.slice(0, 1);// position coordinate in the first Array
+            const innerArrayCoordinate = position.slice(1, 2);// position coordinate in the second Array
+            const innerArray = dataArray[outerArrayCoordinate];
+            spanList = document.querySelectorAll('span');
 
-            if (step % 2 === 0) {
+            if (step % 2 === 0) { // depends from turn its x or o, and sets matched number in the main array
                 event.target.innerText = "x";
-                step++;
                 innerArray[innerArrayCoordinate] = 1;
-                spanList.forEach(function (item) {
-                    item.classList.toggle('turn')
-                });
+
             } else {
                 event.target.innerText = 'o';
-                step++;
                 innerArray[innerArrayCoordinate] = 5;
-                spanList.forEach(function (item) {
-                    item.classList.toggle('turn')
-                });
-            }
 
+            }
+            step++;
+            spanList.forEach(function (item) { // switches turn
+                item.classList.toggle('turn')
+            });
             finalResult();
         }
     }
 });
 
-var button = document.querySelector('button');
+const button = document.querySelector('button');
 
-button.addEventListener('click', function () {
+button.addEventListener('click', function () { // makes a total reset
 
-    var scoreList = document.querySelectorAll('.score');
+    const scoreList = document.querySelectorAll('.score');
     clearTable();
+
+    const spanList = document.querySelectorAll('span');
+    spanList.forEach(function (item) {
+        item.classList.remove('turn');
+    });
+    spanList[0].classList.add('turn');
     scoreList.forEach(function (item) {
         item.innerText = 0;
         item.classList.remove('winner');
     });
-    var firstPlayer = scoreList[0];
-    firstPlayer.classList.add('winner');
 
+    const firstPlayer = scoreList[0];
+    firstPlayer.classList.add('winner');
 });

@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower|Mali:700');
 @import url('https://fonts.googleapis.com/css?family=Acme');
-
+@mixin centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin hiddenLine {
+  display: none;
+  position: absolute;
+  background-color: darkred;
+}
+@mixin playerScorePosition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 * {
   margin: 0;
   box-sizing: border-box;
@@ -25,10 +39,8 @@
     main {
       width: 100%;
       height: 600px;
-      display: flex;
       position: relative;
-      justify-content: center;
-      align-items: center;
+      @include centering;
 
       .playarea {
         width: 304px;
@@ -45,9 +57,7 @@
           border: 2px solid #3d1811;
           font-size: 5em;
           padding-bottom: 18px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include centering;
           font-family: 'Mali', cursive;
           color: #ffffff;
           &:nth-child(n + 2) {
@@ -71,32 +81,28 @@
 
           &:active {
             border: 4px solid black;
-
           }
         }
-
 
         .horizontal {
           width: 280px;
           height: 4px;
-          background-color: darkred;
-          position: absolute;
-          display: none;
+          @include hiddenLine;
         }
 
-        .line0 {
+        .hline0 {
           display: block;
           top: 48px;
           left: 10px;
         }
 
-        .line1 {
+        .hline1 {
           display: block;
           top: 148px;
           left: 10px;
         }
 
-        .line2 {
+        .hline2 {
           display: block;
           top: 248px;
           left: 10px;
@@ -105,9 +111,7 @@
         .vertical {
           width: 4px;
           height: 280px;
-          background-color: darkred;
-          position: absolute;
-          display: none;
+          @include hiddenLine;
         }
 
         .vline0 {
@@ -132,20 +136,17 @@
         .diagonal {
           width: 4px;
           height: 350px;
-          background-color: darkred;
-          position: absolute;
-          display: none;
-
+          @include hiddenLine;
         }
 
-        .left {
+        .dLine0 {
           transform: rotate(-45deg);
           left: 150px;
           top: -25px;
           display: block;
         }
 
-        .right {
+        .dLine1 {
           transform: rotate(45deg);
           left: 150px;
           top: -25px;
@@ -156,9 +157,7 @@
       .score {
         width: 100px;
         height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+       @include centering;
         font-size: 5em;
         font-family:'Indie Flower', cursive;
 
@@ -166,18 +165,13 @@
 
       .player1 {
         margin-right: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @include playerScorePosition;
       }
 
       .player2 {
         margin-left: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @include playerScorePosition;
       }
-
 
       span {
         font-size: 3em;
@@ -193,6 +187,7 @@
         color: #ffffff;
       }
     }
+
     button {
       position: absolute;
       width: 200px;
@@ -205,8 +200,15 @@
       left:50px;
       font-family: 'Indie Flower', cursive;
       border: 2px solid #054940;
+      outline: none;
+    }
+
+    .display {
+      display: block;
     }
   }
+
+
   @media all and (max-width: 1010px) {
 
     main {
@@ -220,7 +222,6 @@
         height: 304px;
         display: flex;
         flex-wrap: wrap;
-        border: 2px solid grey;
         position: relative;
         margin-top: 100px;
       }
@@ -238,10 +239,10 @@
       }
     }
   }
+
   @media all and (max-width: 650px) {
     body{
       h1 {
-        //display: none;
         top: 315px;
         opacity: 0.1;
       }
