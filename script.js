@@ -1,10 +1,10 @@
-var playArea = document.querySelector('.playarea'); //  main play area
-var step = 0;// determines who is player
-var fieldSquareList = document.querySelectorAll('.fieldsquare');// cells of main area
-var horizontal = document.querySelector('.horizontal');// winning line
-var vertical = document.querySelector('.vertical');// winning line
-var diagonal = document.querySelector('.diagonal');// winning line
-var reset; // triggers main play area purification
+const playArea = document.querySelector('.playarea'); //  main play area
+let step = 0;// determines who is player
+const fieldSquareList = document.querySelectorAll('.fieldsquare');// cells of main area
+const horizontal = document.querySelector('.horizontal');// winning line
+const vertical = document.querySelector('.vertical');// winning line
+const diagonal = document.querySelector('.diagonal');// winning line
+let reset; // triggers main play area purification
 const dataArray = [ // the main array to determine the winner
     [0, 0, 0],
     [0, 0, 0],
