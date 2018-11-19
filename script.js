@@ -11,28 +11,25 @@ const dataArray = [ // the main array to determine the winner
     [0, 0, 0]
 ];
 
-function clearTable() { // when reset true, cleans every cell of main play area
-    fieldSquareList.forEach(function (item) {
-        item.innerText = '';
-    });
+const clearTable = () => { // when reset true, cleans every cell of main play area
+    fieldSquareList.forEach( (item) =>  item.innerText = '');
     for (let i = 0; i < 3; i++) {
         horizontal.classList.remove('hline' + i);
         vertical.classList.remove('vline' + i);
         diagonal.classList.remove('dLine' + i);
 
     }
-
     reset = false;
 
-    dataArray.forEach(function (item) {
+    dataArray.forEach((item) => {
         for (let i = 0; i < item.length; i++) {
             item[i] = 0;
         }
     });
     step = 0;
-}
+};
 
-function getWinner(winningCombination) { // determines winner
+const getWinner = (winningCombination) => { // determines winner
 
     switch (winningCombination) {
         case 3:
@@ -49,9 +46,9 @@ function getWinner(winningCombination) { // determines winner
             newWinner.innerText = +newWinner.innerText + 1;
             break;
     }
-}
+};
 
-function finalResult() {
+const finalResult= () => {
     const combinations = {// set of counts, that determines where a red 'cross out' line will appear
         'verticalLine0': 0,
         'verticalLine1': 0,
@@ -109,7 +106,7 @@ function finalResult() {
     let fieldSquareCount = 0;
     const standOffSituation = 9;
 
-    fieldSquareList.forEach(function (item) {// counter to determine standoff situation
+    fieldSquareList.forEach((item) => {// counter to determine standoff situation
         if (item.innerText) {
             fieldSquareCount ++;
         }
@@ -118,20 +115,17 @@ function finalResult() {
     if (fieldSquareCount === standOffSituation) { // resolve standoff situation
         clearTable();
         const spanList = document.querySelectorAll('span');
-        spanList.forEach(function (item) {//maintains the winner's turn in a standoff situation
-            item.classList.toggle('turn');
-        });
+        spanList.forEach( (item) => item.classList.toggle('turn') );//maintains the winner's turn in a standoff
+        // situation
     }
-}
+};
 
-playArea.addEventListener('click', function (event) {
+playArea.addEventListener('click', (event) =>{
     let spanList = document.querySelectorAll('span');
 
     if (reset) {// winning combination provokes game area cleaning and maintains a turn of a winner
         clearTable();
-        spanList.forEach(function (item) {
-            item.classList.toggle('turn');
-        });
+        spanList.forEach( (item) => item.classList.toggle('turn') );
     } else {
 
         if (!event.target.innerText) {
@@ -151,9 +145,7 @@ playArea.addEventListener('click', function (event) {
 
             }
             step++;
-            spanList.forEach(function (item) { // switches turn
-                item.classList.toggle('turn')
-            });
+            spanList.forEach((item) => item.classList.toggle('turn') );// switches turn
             finalResult();
         }
     }
@@ -161,17 +153,15 @@ playArea.addEventListener('click', function (event) {
 
 const button = document.querySelector('button');
 
-button.addEventListener('click', function () { // makes a total reset
+button.addEventListener('click', () => { // makes a total reset
 
     const scoreList = document.querySelectorAll('.score');
     clearTable();
 
     const spanList = document.querySelectorAll('span');
-    spanList.forEach(function (item) {
-        item.classList.remove('turn');
-    });
+    spanList.forEach( (item) => item.classList.remove('turn') );
     spanList[0].classList.add('turn');
-    scoreList.forEach(function (item) {
+    scoreList.forEach( (item) => {
         item.innerText = 0;
         item.classList.remove('winner');
     });
