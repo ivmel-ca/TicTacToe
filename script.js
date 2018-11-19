@@ -187,30 +187,35 @@ const okButton = document.querySelector('.OK');
 okButton.addEventListener( 'click', () => {
     messageRemove();
 });
-
-nameList[0].addEventListener('click', () => {
+const newName = (elem) => { // renamed player's name
     const name = document.querySelector('.name');
     const input = document.querySelector('.input');
-    input.innerText = `Enter Player1 name:`;
+    input.innerText = `Enter player's name:`;
     name.classList.add('active');
-    nameList[0].classList.add('change');
+    elem.classList.add('change');
+};
+
+
+nameList[0].addEventListener('click', () => {
+    newName(nameList[0]);
 });
 
 nameList[1].addEventListener('click',  () => {
-    const name = document.querySelector('.name');
-    const input = document.querySelector('.input');
-    input.innerText = `Enter Player2 name:`;
-    name.classList.add('active');
-    nameList[1].classList.add('change');
+    newName(nameList[1]);
 });
 
 const doneButton = document.querySelector('.done');
-doneButton.addEventListener('click', () => {
+
+doneButton.addEventListener( 'click', () => {  // set new player's name
+
     const name = document.querySelector('.name');
     name.classList.remove('active');
     const changingElement = document.querySelector('.change');
     const value = document.querySelector('input');
-    changingElement.innerText = value.value;
-    changingElement.classList.remove('change');
-    value.value = '';
+
+    if (value.value) {
+        changingElement.innerText = value.value;
+        changingElement.classList.remove('change');
+        value.value = '';
+    }
 });
