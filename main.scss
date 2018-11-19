@@ -188,7 +188,7 @@
       }
     }
 
-    button {
+    .reset-score {
       position: absolute;
       width: 200px;
       height: 50px;
@@ -205,6 +205,18 @@
 
     .display {
       display: block;
+    }
+    .alert{
+      background: red;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(50%);
+      transform: translateY(50%);
+
+
     }
   }
 
@@ -260,7 +272,7 @@
       span {
         font-size: 1em;
       }
-      button{
+      .reset-score{
         top: 312px;
       }
     }

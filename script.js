@@ -151,9 +151,9 @@ playArea.addEventListener('click', (event) =>{
     }
 });
 
-const button = document.querySelector('button');
+const resetButton = document.querySelector('.reset-score');
 
-button.addEventListener('click', () => { // makes a total reset
+resetButton.addEventListener('click', () => { // makes a total reset
 
     const scoreList = document.querySelectorAll('.score');
     clearTable();

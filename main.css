@@ -132,7 +132,7 @@
         border-bottom: 2px solid #17369b; }
       * body main .winner {
         color: #ffffff; }
-    * body button {
+    * body .reset-score {
       position: absolute;
       width: 200px;
       height: 50px;
@@ -147,6 +147,15 @@
       outline: none; }
     * body .display {
       display: block; }
+    * body .alert {
+      background: red;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(50%);
+      transform: translateY(50%); }
   @media all and (max-width: 1010px) {
     * main {
       min-width: 366px;
@@ -181,7 +190,7 @@
       margin-top: 100px; }
     * main span {
       font-size: 1em; }
-    * main button {
+    * main .reset-score {
       top: 312px; } }
 
 /*# sourceMappingURL=main.css.map */
