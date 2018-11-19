@@ -5,11 +5,13 @@ const horizontal = document.querySelector('.horizontal');// winning line
 const vertical = document.querySelector('.vertical');// winning line
 const diagonal = document.querySelector('.diagonal');// winning line
 let reset; // triggers main play area purification
+const nameList = document.querySelectorAll('span');
 const dataArray = [ // the main array to determine the winner
     [0, 0, 0],
     [0, 0, 0],
     [0, 0, 0]
 ];
+
 const messageRemove = () => {
     const message = document.querySelector('.alert');
     message.classList.remove('active');
@@ -50,7 +52,7 @@ const getWinner = (winningCombination) => { // determines winner
             });
             const newWinner = document.querySelector('.winner');
             newWinner.innerText = +newWinner.innerText + 1;
-            message.innerText = newWinner.previousElementSibling.innerText + 'wins!';
+            message.innerText = newWinner.previousElementSibling.innerText + ' wins!';
             break;
     }
 
@@ -186,3 +188,29 @@ okButton.addEventListener( 'click', () => {
     messageRemove();
 });
 
+nameList[0].addEventListener('click', () => {
+    const name = document.querySelector('.name');
+    const input = document.querySelector('.input');
+    input.innerText = `Enter Player1 name:`;
+    name.classList.add('active');
+    nameList[0].classList.add('change');
+});
+
+nameList[1].addEventListener('click',  () => {
+    const name = document.querySelector('.name');
+    const input = document.querySelector('.input');
+    input.innerText = `Enter Player2 name:`;
+    name.classList.add('active');
+    nameList[1].classList.add('change');
+});
+
+const doneButton = document.querySelector('.done');
+doneButton.addEventListener('click', () => {
+    const name = document.querySelector('.name');
+    name.classList.remove('active');
+    const changingElement = document.querySelector('.change');
+    const value = document.querySelector('input');
+    changingElement.innerText = value.value;
+    changingElement.classList.remove('change');
+    value.value = '';
+});
