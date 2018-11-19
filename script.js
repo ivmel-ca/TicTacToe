@@ -10,14 +10,16 @@ const dataArray = [ // the main array to determine the winner
     [0, 0, 0],
     [0, 0, 0]
 ];
-
+const messageRemove = () => {
+    const message = document.querySelector('.alert');
+    message.classList.remove('active');
+};
 const clearTable = () => { // when reset true, cleans every cell of main play area
     fieldSquareList.forEach( (item) =>  item.innerText = '');
     for (let i = 0; i < 3; i++) {
         horizontal.classList.remove('hline' + i);
         vertical.classList.remove('vline' + i);
         diagonal.classList.remove('dLine' + i);
-
     }
     reset = false;
 
@@ -27,14 +29,18 @@ const clearTable = () => { // when reset true, cleans every cell of main play ar
         }
     });
     step = 0;
+    const message = document.querySelector(".alert");
+    message.classList.add('active');
 };
 
 const getWinner = (winningCombination) => { // determines winner
+    const message = document.querySelector('.game-info');
 
     switch (winningCombination) {
         case 3:
             const winner = document.querySelector('.winner');
             winner.innerText = +winner.innerText + 1;
+            message.innerText = winner.previousElementSibling.innerText + ' wins!';
             break;
         case 15:
             const scoreList = document.querySelectorAll('.score');
@@ -44,8 +50,10 @@ const getWinner = (winningCombination) => { // determines winner
             });
             const newWinner = document.querySelector('.winner');
             newWinner.innerText = +newWinner.innerText + 1;
+            message.innerText = newWinner.previousElementSibling.innerText + 'wins!';
             break;
     }
+
 };
 
 const finalResult= () => {
@@ -113,6 +121,8 @@ const finalResult= () => {
     });
 
     if (fieldSquareCount === standOffSituation) { // resolve standoff situation
+        const message = document.querySelector('.game-info');
+        message.innerText = `Ups... It's a stand off situation:)`;
         clearTable();
         const spanList = document.querySelectorAll('span');
         spanList.forEach( (item) => item.classList.toggle('turn') );//maintains the winner's turn in a standoff
@@ -168,4 +178,11 @@ resetButton.addEventListener('click', () => { // makes a total reset
 
     const firstPlayer = scoreList[0];
     firstPlayer.classList.add('winner');
+    messageRemove();
 });
+
+const okButton = document.querySelector('.OK');
+okButton.addEventListener( 'click', () => {
+    messageRemove();
+});
+

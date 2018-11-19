@@ -145,17 +145,43 @@
       font-family: 'Indie Flower', cursive;
       border: 2px solid #054940;
       outline: none; }
+      * body .reset-score:active {
+        background: #054940; }
     * body .display {
       display: block; }
     * body .alert {
-      background: red;
-      width: 100px;
-      height: 100px;
+      background: rgba(21, 165, 120, 0.9);
+      width: 50%;
+      height: 300px;
       position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateX(50%);
-      transform: translateY(50%); }
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      * body .alert .game-info {
+        font-size: 3em;
+        font-family: 'Acme', sans-serif;
+        text-align: center; }
+      * body .alert .OK {
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: #15a578;
+        color: #ffffff;
+        font-size: 1.5em;
+        font-family: 'Indie Flower', cursive;
+        border: 2px solid #054940;
+        outline: none; }
+        * body .alert .OK:active {
+          background: #054940; }
+    * body .active {
+      display: flex; }
   @media all and (max-width: 1010px) {
     * main {
       min-width: 366px;
@@ -180,7 +206,10 @@
   @media all and (max-width: 650px) {
     * body h1 {
       top: 315px;
-      opacity: 0.1; } }
+      opacity: 0.1; }
+    * body .alert {
+      min-width: 372px;
+      height: 250px; } }
 @media all and (max-width: 650px) and (max-width: 375px) {
   * body {
     overflow: hidden; }

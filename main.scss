@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower|Mali:700');
 @import url('https://fonts.googleapis.com/css?family=Acme');
+
 @mixin centering {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 @mixin hiddenLine {
   display: none;
   position: absolute;
   background-color: darkred;
 }
+
 @mixin playerScorePosition {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -23,13 +27,14 @@
     background-color: #29ce9a;
     position: relative;
 
+
     h1 {
       position: absolute;
       top: 30px;
       width: 100%;
       text-align: center;
       font-size: 3em;
-      font-family:'Acme', cursive;
+      font-family: 'Acme', cursive;
 
       b {
         color: white;
@@ -50,7 +55,6 @@
         position: relative;
         border: 2px solid #29ce9a;
 
-
         .fieldsquare {
           width: 100px;
           height: 100px;
@@ -70,14 +74,14 @@
             border-right: #29ce9a;
           }
           &:nth-child(10) {
-             border-bottom: #29ce9a;
-           }
+            border-bottom: #29ce9a;
+          }
           &:nth-child(11) {
             border-bottom: #29ce9a;
           }
           &:nth-child(12) {
-             border-bottom: #29ce9a;
-           }
+            border-bottom: #29ce9a;
+          }
 
           &:active {
             border: 4px solid black;
@@ -157,9 +161,9 @@
       .score {
         width: 100px;
         height: 100px;
-       @include centering;
+        @include centering;
         font-size: 5em;
-        font-family:'Indie Flower', cursive;
+        font-family: 'Indie Flower', cursive;
 
       }
 
@@ -179,11 +183,11 @@
         border: 2px solid #29ce9a;
       }
 
-      .turn{
+      .turn {
         border-bottom: 2px solid #17369b;
       }
 
-      .winner{
+      .winner {
         color: #ffffff;
       }
     }
@@ -197,29 +201,61 @@
       color: #ffffff;
       font-size: 1.5em;
       top: 324px;
-      left:50px;
+      left: 50px;
       font-family: 'Indie Flower', cursive;
       border: 2px solid #054940;
       outline: none;
+
+      &:active {
+        background: #054940;
+      }
     }
 
     .display {
       display: block;
     }
-    .alert{
-      background: red;
-      width: 100px;
-      height: 100px;
+    .alert {
+      background: rgba(21, 165, 120, 0.9);
+      width: 50%;
+      height: 300px;
       position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateX(50%);
-      transform: translateY(50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
+      .game-info {
+        font-size: 3em;
+        font-family: 'Acme', sans-serif;
+        text-align: center;
+      }
 
+      .OK {
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: #15a578;
+        color: #ffffff;
+        font-size: 1.5em;
+        font-family: 'Indie Flower', cursive;
+        border: 2px solid #054940;
+        outline: none;
+
+        &:active {
+          background: #054940;
+        }
+      }
+    }
+    .active {
+      display: flex;
     }
   }
-
 
   @media all and (max-width: 1010px) {
 
@@ -250,32 +286,37 @@
         right: 10px;
       }
     }
+
   }
 
   @media all and (max-width: 650px) {
-    body{
+    body {
       h1 {
         top: 315px;
         opacity: 0.1;
       }
-  }
+      .alert {
+        min-width: 372px;
+        height: 250px;
+      }
+    }
 
-  @media all and (max-width: 375px) {
-    body{
-      overflow: hidden;
+    @media all and (max-width: 375px) {
+      body {
+        overflow: hidden;
+      }
+      main {
+        height: 530px;
+        .playarea {
+          margin-top: 100px;
+        }
+        span {
+          font-size: 1em;
+        }
+        .reset-score {
+          top: 312px;
+        }
+      }
     }
-    main {
-      height: 530px;
-      .playarea {
-      margin-top: 100px;
-      }
-      span {
-        font-size: 1em;
-      }
-      .reset-score{
-        top: 312px;
-      }
-    }
-   }
   }
 }
