@@ -18,7 +18,8 @@
   flex-direction: column;
   align-items: center;
 }
-@mixin forPrompts{
+
+@mixin forPrompts {
   width: 50%;
   height: 300px;
   background: rgba(21, 165, 120, 0.9);
@@ -41,7 +42,6 @@
   body {
     background-color: #29ce9a;
     position: relative;
-
 
     h1 {
       position: absolute;
@@ -255,38 +255,43 @@
     }
 
     .name {
-     @include forPrompts;
-
+      @include forPrompts;
       .input {
         font-size: 3em;
         font-family: 'Acme', sans-serif;
         text-align: center;
       }
-      [type = text] {
-        margin-top: 10px;
-        font-size: 2em;
-        font-family: 'Acme', sans-serif;
-        text-align: center;
-        background: rgba(21, 165, 120, 0.1);
-        border: none;
-        border-bottom: 1px solid #3d1811;
-        outline: none;
-      }
+      form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
 
-      .done {
-        margin-top: 20px;
-        width: 200px;
-        height: 50px;
-        border-radius: 10px;
-        background-color: #15a578;
-        color: #ffffff;
-        font-size: 1.5em;
-        font-family: 'Indie Flower', cursive;
-        border: 2px solid #054940;
-        outline: none;
+        [type = text] {
+          margin-top: 10px;
+          font-size: 2em;
+          font-family: 'Acme', sans-serif;
+          text-align: center;
+          background: rgba(21, 165, 120, 0.1);
+          border: none;
+          border-bottom: 1px solid #3d1811;
+          outline: none;
+        }
 
-        &:active {
-          background: #054940;
+        .done {
+          margin-top: 20px;
+          width: 200px;
+          height: 50px;
+          border-radius: 10px;
+          background-color: #15a578;
+          color: #ffffff;
+          font-size: 1.5em;
+          font-family: 'Indie Flower', cursive;
+          border: 2px solid #054940;
+          outline: none;
+
+          &:active {
+            background: #054940;
+          }
         }
       }
     }
@@ -296,39 +301,39 @@
   }
 
   @media all and (max-width: 1010px) {
-  body {
+    body {
 
-    main {
-      min-width: 366px;
-      width: 100%;
-      height: 600px;
-      position: relative;
-
-      .playarea {
-        width: 304px;
-        height: 304px;
-        display: flex;
-        flex-wrap: wrap;
+      main {
+        min-width: 366px;
+        width: 100%;
+        height: 600px;
         position: relative;
-        margin-top: 100px;
-      }
 
-      .player1 {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-      }
+        .playarea {
+          width: 304px;
+          height: 304px;
+          display: flex;
+          flex-wrap: wrap;
+          position: relative;
+          margin-top: 100px;
+        }
 
-      .player2 {
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        .player1 {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+        }
+
+        .player2 {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+      .name {
+        min-width: 350px;
       }
     }
-    .name{
-      min-width: 350px;
-    }
-  }
   }
   @media all and (max-width: 650px) {
     body {
@@ -351,22 +356,25 @@
         overflow: hidden;
       }
       main {
+
         height: 530px;
         .playarea {
           margin-top: 100px;
         }
-        span {
-          font-size: 1em;
+        .p1, .p2 {
+          margin-top: 20px;
+          font-size: 2.8em;
         }
+
         .reset-score {
           top: 312px;
         }
       }
-      .alert{
+      .alert {
         min-width: 350px;
         width: 80%;
       }
-      .name{
+      .name {
         min-width: 350px;
         width: 80%;
       }

@@ -204,10 +204,10 @@ nameList[1].addEventListener('click',  () => {
     newName(nameList[1]);
 });
 
-const doneButton = document.querySelector('.done');
+const form = document.querySelector('form');
 
-doneButton.addEventListener( 'click', () => {  // set new player's name
-
+form.addEventListener( 'submit', (event) => {  // set new player's name
+    event.preventDefault();
     const name = document.querySelector('.name');
     name.classList.remove('active');
     const changingElement = document.querySelector('.change');
@@ -219,3 +219,5 @@ doneButton.addEventListener( 'click', () => {  // set new player's name
         value.value = '';
     }
 });
+
+
